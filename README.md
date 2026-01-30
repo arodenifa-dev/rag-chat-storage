@@ -12,7 +12,7 @@ This service focuses on **conversation persistence**, **session lifecycle manage
 - ✅ Store user and AI-generated messages for the session
 - ✅ Persist RAG retrieved context and model metadata
 - ✅ API Key–based authentication
-- ✅ Rate limiting to prevent API abuse, 20 api request per minute
+- ✅ Rate limiting to prevent API abuse, 10 api request per minute
 - ✅ PostgreSQL persistence
 - ✅ Swagger / OpenAPI documentation
 - ✅ Clean layered architecture
