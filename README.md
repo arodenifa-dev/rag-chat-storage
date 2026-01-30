@@ -10,13 +10,18 @@ This service focuses on **conversation persistence**, **session lifecycle manage
 
 - ✅ Create, update, and delete chat sessions
 - ✅ Store user and AI-generated messages for the session
+- ✅ Retrieving chat messages - pagination support
 - ✅ Persist RAG retrieved context and model metadata
+- ✅ Centralized logging and error management
 - ✅ API Key–based authentication
 - ✅ Rate limiting to prevent API abuse, 10 api request per minute
 - ✅ PostgreSQL persistence
 - ✅ Swagger / OpenAPI documentation
 - ✅ Clean layered architecture
-- ✅ Dockerized for local setup  
+- ✅ Dockerized for local setup 
+- ✅ Dockerized for database management
+- ✅ Unit testing
+- ✅ Health check endpoint added
 
 ---
 
