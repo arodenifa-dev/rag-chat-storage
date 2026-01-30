@@ -1,0 +1,54 @@
+version: "3.8"
+
+services:
+
+  postgres:
+    image: postgres:15
+    container_name: rag-postgres
+    restart: always
+    environment:
+      POSTGRES_DB: rag-chat
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./src/main/resources/db/migration:/docker-entrypoint-initdb.d
+
+  rag-chat-storage:
+    build: .
+    container_name: rag-chat-app
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_APPLICATION_NAME: rag-chat-storage
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/rag-chat
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: admin123
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
+      SPRING_JPA_HIBERNATE_SHOW_SQL: "true"
+
+      # API Security
+      API_KEY: super-key
+
+      # Rate limiting
+      RATE_LIMIT_CAPACITY: 4
+      RATE_LIMIT_REFILL_PER_MINUTE: 4
+
+  pgadmin:
+    image: dpage/pgadmin4:7
+    container_name: rag-pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@rag.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "8081:80"
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:
