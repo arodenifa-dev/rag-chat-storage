@@ -14,12 +14,19 @@ import com.ragchat.rag_chat_storage.utils.RagChatUtils;
 
 import java.io.IOException;
 import java.util.Collections;
-import java.util.List;
+
 
 public class ApiKeyAuthFilter extends OncePerRequestFilter {
 
     @Value(RagChatUtils.API_KEY)
     private String apiKey;
+
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+
+        return RagChatUtils.shouldNotFilter(request);
+
+    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,

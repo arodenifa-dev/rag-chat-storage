@@ -27,11 +27,20 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http
-                .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
-                .addFilterBefore(apiKeyAuthFilter(), UsernamePasswordAuthenticationFilter.class)
-                .addFilterAfter(apiRateLimitFilter(), ApiKeyAuthFilter.class);
+        .csrf(csrf -> csrf.disable())
+        .authorizeHttpRequests(auth -> auth
+            .requestMatchers(
+                "/swagger-ui/**",
+                "/v3/api-docs/**",
+                "/swagger-ui.html"
+            ).permitAll()
+            .anyRequest().authenticated()
+        )
+        .addFilterBefore(apiKeyAuthFilter(), UsernamePasswordAuthenticationFilter.class)
+        .addFilterAfter(apiRateLimitFilter(), ApiKeyAuthFilter.class);
 
-        return http.build();
+    return http.build();
     }
+
+    
 }
