@@ -51,42 +51,10 @@ rag-chat-storage
 ├── exception # Custom exceptions
 └── utils # Logging & helpers
 
+## SETUP RAG CHAT STORAGE
 
-## Example API Call (Postman)
-
-Add Message
-## Required Request Header
-
-**URL**
-
-POST /sessions/{sessionId}/messages
-
-
-**Headers**
-
-X-API-KEY: super-key
-Content-Type: application/json
-
-
-**Request Body**
-
-{
-  "sender": "ASSISTANT",
-  "content": "We offer refunds within 30 days of purchase.",
-  "ragContext": [
-    {
-      "sourceId": "doc_201",
-      "sourceType": "PDF",
-      "title": "Refund Policy",
-      "excerpt": "Refunds are available within 30 days if unused.",
-      "similarityScore": 0.93
-    }
-  ],
-  "modelMetadata": {
-    "model": "gpt-4.1",
-    "temperature": 0.2
-  }
-}
+**GitHub url -  https://github.com/arodenifa-dev/rag-chat-storage.git**
+git clone https://github.com/arodenifa-dev/rag-chat-storage.git
 
 ## 🐳 Running the Application with Docker & pgAdmin ##
 
@@ -105,7 +73,6 @@ Make sure you have the following installed:
 Docker
 👉 https://www.docker.com/products/docker-desktop
 
-Docker Compose (comes with Docker Desktop)
 
 Verify installation:
 
@@ -123,16 +90,38 @@ rag-chat-storage
 
 ▶️ **Start Docker Containers**
 
-docker compose up -d
+docker compose build
+docker compose up
 
-## 🗄️ Access pgAdmin (Database UI) ##
+
+## 📘 Access endpoints through Swagger ##
+
+This project uses Swagger UI (OpenAPI 3) to provide interactive API documentation for all available endpoints.
+Swagger allows developers to:
+View all available APIs
+Understand request/response models
+Test APIs directly from the browser
+
+**🔗 Accessing Swagger UI**
+
+Once the application is running, Swagger UI is available at:
+
+http://localhost:8080/swagger-ui/index.html
+Authorize using key : super=key
+
+## 🗄️ Access pgAdmin from browser (Database UI) ##
 **Open in browser:**
-[Open in browser:](http://localhost:5050)
+[Open in browser:](http://localhost:8081/browser/)
 **Login credentials:**
 Email: admin@ragchat.com
 Password: admin
 
-**🔌 Connect pgAdmin to PostgreSQL**
+server: rag-chat-postgres
+database: rag-chat
+
+🎉 You can now browse:
+
+<!-- **🔌 Connect pgAdmin to PostgreSQL**
 
 Right-click Servers → Register → Server
 
@@ -152,9 +141,9 @@ Username: postgres
 
 Password: admin123
 
-Click Save
+Click Save -->
 
-🎉 You can now browse:
+
 
 
 
