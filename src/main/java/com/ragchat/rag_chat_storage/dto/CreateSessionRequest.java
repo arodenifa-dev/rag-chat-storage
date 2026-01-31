@@ -15,7 +15,7 @@ import lombok.Setter;
 public class CreateSessionRequest {
 
     @NotBlank
-    @Schema(description = "User ID info of the rag chat session", example = "2f2c55ab-225d-4292-8799-66e17322c262")
+    @Schema(description = "User's ID info of the rag chat session", example = "user-code-genesis@gmail.com")
     private String userId;
 
     @Schema(description = "Name of the session", example = "My Support Chat")
