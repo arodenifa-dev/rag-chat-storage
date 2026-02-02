@@ -114,7 +114,7 @@ Authorize using key : super=key
 [Open in browser:](http://localhost:8081/browser/)
 **Login credentials:**
 Email: admin@ragchat.com
-Password: admin
+Password: admin123
 
 server: rag-chat-postgres
 database: rag-chat
