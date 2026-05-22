@@ -1,15 +1,5 @@
 package com.ragchat.rag_chat_storage.service;
 
-import java.util.UUID;
-
-import org.slf4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
-
 import com.ragchat.rag_chat_storage.dto.AddMessageRequest;
 import com.ragchat.rag_chat_storage.dto.MessageResponse;
 import com.ragchat.rag_chat_storage.entity.MessageEntity;
@@ -21,8 +11,15 @@ import com.ragchat.rag_chat_storage.mapper.MessageMapper;
 import com.ragchat.rag_chat_storage.repository.MessageRepository;
 import com.ragchat.rag_chat_storage.repository.SessionRepository;
 import com.ragchat.rag_chat_storage.utils.AppLogger;
-
 import jakarta.transaction.Transactional;
+import java.util.UUID;
+import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
 @Service
 public class MessageServiceImpl implements MessageService {
@@ -76,7 +73,7 @@ public class MessageServiceImpl implements MessageService {
         Page<MessageEntity> messages = messageRepository.findBySession_SessionIdOrderByCreatedAtAsc(
                 sessionId,
                 pageable);
-
+        
         return messages.map(MessageMapper::toMessageResponse);
 
     }
